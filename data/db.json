@@ -1,9 +1,19 @@
 {
-    "notes": [
-        {
-            "title":"Test Title",
-            "text":"Test text", 
-            "id": "test_id"
-            }
-        ]
+  "notes": [
+    {
+      "title": "Test Title",
+      "text": "Test text",
+      "id": "test_id"
+    },
+    {
+      "title": "Send flowers",
+      "text": "to Elizabeth",
+      "id": "1"
+    },
+    {
+      "title": "Taxes",
+      "text": "Submit 2019!",
+      "id": "2"
+    }
+  ]
 }
