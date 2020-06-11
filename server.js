@@ -43,6 +43,13 @@ function filterByQuery(query, notesArray) {
       return filteredResults;
 }
 
+function validateNote(note) {
+    if (!note.title || typeof note.title !== 'string') {
+        return false;
+    }
+    return true;
+}
+
 // argument 1. string that describes the route the client will have to fetch from //
 // argument 2. callback function that will execute every time route is accessed with a get request //
 app.get('/api/db', (req, res) => {
@@ -68,6 +75,11 @@ app.post('/api/db', (req, res) => {
     // set id based on what the next index of the array will be //
     req.body.id = notes.length.toString();
 
+    // if any data in req.body is incorrect, send 400 error back //
+    if (!validateNote(req.body)) {
+        res.status(400).send('Note must have a title.');
+    }
+    
     //add note to JSON file and notes array in this function //
     const note = createNewNote(req.body, notes);
 
