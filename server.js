@@ -15,6 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
 
+app.use(express.static('public'));
+
+
 // takes id & array of notes and returns a single note object //
 function findById(id, notesArray) {
     const result = notesArray.filter(note => note.id === id)[0];
@@ -84,6 +87,15 @@ app.post('/api/db', (req, res) => {
     const note = createNewNote(req.body, notes);
 
     res.json(note);
+});
+
+// get index.html to be served from express.js server //
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
 app.listen(PORT, () => {

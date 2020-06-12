@@ -60,6 +60,25 @@ var handleNoteSave = function() {
     getAndRenderNotes();
     renderActiveNote();
   });
+
+  fetch('/api/db', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content Type': 'application/json'
+    },
+    body: JSON.stringify(noteObject)
+  })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      alert('Error: ' + response.statusText);
+    })
+    .then(postResponse => {
+      console.log(postResponse);
+      alert('Thank you for adding a note!');
+    });
 };
 
 // BONUS Delete the clicked note
