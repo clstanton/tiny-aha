@@ -17,14 +17,13 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
+// enable debug messages //
+module.uniqid_debug = true;
+ 
+// unique id generator //
+var uniqid = require('uniqid');
 
-// takes id & array of notes and returns a single note object //
-function findById(id, notesArray) {
-    const result = notesArray.filter(note => note.id === id)[0];
-    return result;
-}
-
-// Function to handle note creation //
+// note creation function //
 function createNewNote(body, notesArray) {
     const note = body;
     notesArray.push(note);
@@ -46,6 +45,7 @@ function filterByQuery(query, notesArray) {
       return filteredResults;
 }
 
+// validation function //
 function validateNote(note) {
     if (!note.title || typeof note.title !== 'string') {
         return false;
@@ -55,7 +55,7 @@ function validateNote(note) {
 
 // argument 1. string that describes the route the client will have to fetch from //
 // argument 2. callback function that will execute every time route is accessed with a get request //
-app.get('/api/db', (req, res) => {
+app.get('/api/notes', (req, res) => {
     let results = notes;
     if (req.query) {
         results = filterByQuery(req.query,results);
@@ -63,17 +63,18 @@ app.get('/api/db', (req, res) => {
     res.json(results);
 });
 
-app.get('/api/db/:id', (req, res) => {
-    const result = findById(req.params.id, animals);
-    if (result) {
-        res.json(result);
-    } else {
-        res.send(404);
-    }
+// HTML ROUTE: get index.html to be served from express.js server //
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+// HTML ROUTE: get notes.html to be served from express.js server //
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
 // endpoint that accepts data from the client to be stored on the server //
-app.post('/api/db', (req, res) => {
+app.post('/api/notes', (req, res) => {
     // req.body is where the incoming content will be //
     // set id based on what the next index of the array will be //
     req.body.id = notes.length.toString();
@@ -87,15 +88,6 @@ app.post('/api/db', (req, res) => {
     const note = createNewNote(req.body, notes);
 
     res.json(note);
-});
-
-// get index.html to be served from express.js server //
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
 app.listen(PORT, () => {
