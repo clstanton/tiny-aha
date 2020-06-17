@@ -1,44 +1,14 @@
 {
   "notes": [
     {
-      "title": "Test Title",
-      "text": "Test text",
-      "id": "test_id"
+      "title": "Dog trainer",
+      "text": "Find a program for Jax",
+      "id": "18ha90mgkkbk0apd9"
     },
     {
-      "title": "Send flowers",
-      "text": "to Elizabeth",
-      "id": "1"
-    },
-    {
-      "title": "Taxes",
-      "text": "Submit 2019!",
-      "id": "2"
-    },
-    {
-      "title": "",
-      "text": "",
-      "id": "3"
-    },
-    {
-      "title": "Dog training",
-      "text": "Find program for Jax",
-      "id": "4"
-    },
-    {
-      "title": "Gift certificate",
-      "text": "for Ryan's birthday",
-      "id": "5"
-    },
-    {
-      "title": "Book hair appt",
-      "text": "1 month from 6/4",
-      "id": "6"
-    },
-    {
-      "title": "Aunt Sharyn birthday",
-      "text": "6/13",
-      "id": "7"
+      "title": "Order flowers",
+      "text": "For Elizabeth",
+      "id": "18ha90hkokbk0bvq4"
     }
   ]
 }

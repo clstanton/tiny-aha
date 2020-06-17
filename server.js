@@ -9,6 +9,9 @@ const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+// unique id generator //
+const uniqid = require('uniqid');
+
 /// parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
 
@@ -16,12 +19,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static('public'));
-
-// enable debug messages //
-module.uniqid_debug = true;
- 
-// unique id generator //
-var uniqid = require('uniqid');
 
 // note creation function //
 function createNewNote(body, notesArray) {
@@ -77,7 +74,7 @@ app.get('/notes', (req, res) => {
 app.post('/api/notes', (req, res) => {
     // req.body is where the incoming content will be //
     // set id based on what the next index of the array will be //
-    req.body.id = notes.length.toString();
+    req.body.id = uniqid();
 
     // if any data in req.body is incorrect, send 400 error back //
     if (!validateNote(req.body)) {
@@ -88,6 +85,11 @@ app.post('/api/notes', (req, res) => {
     const note = createNewNote(req.body, notes);
 
     res.json(note);
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+    letId = [req.params.id];
+    delete projects[id];
 });
 
 app.listen(PORT, () => {
