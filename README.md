@@ -7,4 +7,4 @@ Created an app called Note Taker that can be used to write & save notes. It util
 https://tiny-aha.herokuapp.com/
 
 ## Screen Shot
-![](/assets/images/screencapture-localhost-3001-notes-2020-06-17-19_19_07.png)
+![](/public/assets/images/screencapture-localhost-3001-notes-2020-06-17-19_19_07.png)
